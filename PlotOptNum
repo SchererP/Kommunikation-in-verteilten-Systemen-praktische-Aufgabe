@@ -1,0 +1,22 @@
+set terminal jpeg enhanced size 20000 20
+set samples 1001  # high quality
+set border 31 linewidth .3 # thin border
+set output "parsedNum.jpg"
+set xlabel "Ping-Nr."
+set ylabel "RTT in ms"
+set key center top
+plot "parsed" using 1:2 with points title 'Plot über Pingzahl'
+
+min_y = GPVAL_DATA_Y_MIN
+max_y = GPVAL_DATA_Y_MAX
+
+f(x) = mean_y
+fit f(x) "parsed" u 1:2 via mean_y
+
+# Plotting the minimum and maximum ranges with a shaded background
+set label 1 gprintf("Minimum = %g", min_y) at 2, min_y-0.2
+set label 2 gprintf("Maximum = %g", max_y) at 2, max_y+0.2
+set label 3 gprintf("Mean = %g", mean_y) at 2, max_y+0.35
+plot min_y with filledcurves y1=mean_y lt 1 lc rgb "#bbbbdd", \
+max_y with filledcurves y1=mean_y lt 1 lc rgb "#bbddbb", \
+"parsed" using 1:2 with p pt 7 lt 1 ps 1
