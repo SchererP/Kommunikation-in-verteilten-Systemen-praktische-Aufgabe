@@ -1,11 +1,10 @@
-PAROBJECTS = Parser.o
 CPPFLAGS = -g -Wall
 IN = PA.log
 OUT = parsed
 PLOTCONFIG = PlotOptNum PlotOptTime
 
-parser: $(PAROBJECTS)
-	gcc $(CPPFLAGS) -o parser $(PAROBJECTS)
+Parser: Parser.o
+	gcc $(CPPFLAGS) -o Parser Parser.o
 
 %.o: %.c %.h
 	gcc $(CPPFLAGS) -c -o $*.o $*.c
@@ -15,11 +14,15 @@ clean:
 	rm *.o
 	rm *.out
 
-$(OUT): parser $(IN)
-	./parser $(IN) $(OUT)
+$(OUT): Parser $(IN)
+	./Parser $(IN) $(OUT)
 
 PA.log:
 	curl rogue-01.cs.uni-bonn.de/PA.log > PA.log
 
-plot: $(OUT) $(PLOTCONFIG)
-	gnuplot $(PLOTCONFIG)
+plot: $(OUT) PlotOptNum PlotOptTime
+	gnuplot PlotOptNum 
+	gnuplot PlotOptTime
+
+TimeSelect: TimeSelect.o
+	gcc $(CPPFLAGS) -o TimeSelect TimeSelect.o
