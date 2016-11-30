@@ -1,13 +1,14 @@
-set terminal gif enhanced size 20000 20
 set samples 1001  # high quality
 set border 31 linewidth .3 # thin border
-set output "parsedTime.gif"
 set xlabel "Unixtime"
-set xdata time
 set timefmt "%s"
+set xdata time
 set ylabel "RTT in ms"
 set key center top
-stats "parsed" using 3:2 with points title 'Plot über Unixzeit'
+set terminal unknown;
+plot "parsed" using 3:2 with points title 'Plot über Unixzeit'
+set terminal jpeg enhanced size 20000 20
+set output "parsedTime.jpg"
 
 min_y = GPVAL_DATA_Y_MIN
 max_y = GPVAL_DATA_Y_MAX

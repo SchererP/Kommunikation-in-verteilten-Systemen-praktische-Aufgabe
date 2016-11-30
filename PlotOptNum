@@ -1,12 +1,12 @@
-set terminal jpeg enhanced size 20000 20
 set samples 1001  # high quality
 set border 31 linewidth .3 # thin border
-set output "parsedNum.jpg"
 set xlabel "Ping-Nr."
 set ylabel "RTT in ms"
 set key center top
+set terminal unknown;
 plot "parsed" using 1:2 with points title 'Plot über Pingzahl'
-
+set terminal jpeg enhanced size 20000 20
+set output "parsedNum.jpg"
 min_y = GPVAL_DATA_Y_MIN
 max_y = GPVAL_DATA_Y_MAX
 
