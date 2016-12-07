@@ -1,7 +1,8 @@
 CPPFLAGS = -g -Wall
 IN = PA.log
-OUT = parsed.out
-TIMED = timeOut.out
+OUT = Parsed.out
+BOXPLOT = Boxplot
+TIMED = TimeOut.out
 PLOTCONFIG = PlotOptNum PlotOptTime
 
 Parser: Parser.o
@@ -17,6 +18,7 @@ clean:
 	rm -f $$(find . -maxdepth 1 -type f -executable)
 	rm -f *.log
 	rm -f *.jpg
+	rm -f Boxplot*
 
 $(OUT): Parser $(IN)
 	./Parser $(IN) $(OUT)
@@ -24,7 +26,7 @@ $(OUT): Parser $(IN)
 $(IN):
 	wget rogue-01.cs.uni-bonn.de/PA.log
 
-plot: $(OUT) PlotOptNum PlotOptTime
+Plot: $(OUT) PlotOptNum PlotOptTime
 	gnuplot PlotOptNum
 	gnuplot PlotOptTime
 
@@ -32,4 +34,13 @@ TimeSelect: TimeSelect.o
 	gcc $(CPPFLAGS) -o TimeSelect TimeSelect.o
 
 $(TIMED): TimeSelect $(OUT)
-	./TimeSelect $(OUT) $(TIMED) 
+	./TimeSelect $(OUT) $(TIMED)
+
+Splitter: Splitter.o
+	gcc $(CPPFLAGS) -o Splitter Splitter.o
+
+$(BOXPLOT): Splitter $(OUT)
+	./Splitter $(OUT) $(BOXPLOT) 3600
+
+PlotBox: $(BOXPLOT) boxplot
+	gnuplot boxplot

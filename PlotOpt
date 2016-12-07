@@ -1,0 +1,27 @@
+set samples 1001  # high quality
+set title "Ping-Nr. zu Round-Trip-Time"
+set border 31 linewidth .3 # thin border
+set xlabel "Ping-Nr."
+set ylabel "RTT in ms"
+unset key
+set terminal unknown;
+plot "timeOut.out" using 1:2 with points title 'Plot über Pingzahl'
+set terminal jpeg enhanced size 20000 20
+set output "TimedPlot.jpg"
+min_y = GPVAL_DATA_Y_MIN
+max_y = GPVAL_DATA_Y_MAX
+
+f(x) = mean_y
+fit f(x) "timeOut.out" u 1:2 via mean_y
+
+stddev_y = sqrt(FIT_WSSR / (FIT_NDF + 1 ))
+
+# Plotting the minimum and maximum ranges with a shaded background
+set label 1 gprintf("Minimum = %g", min_y) at 1000, 80 left
+set label 2 gprintf("Maximum = %g", max_y) at 1000, 70 left
+set label 3 gprintf("Mean = %g", mean_y) at 1000, 60 left
+set label 4 gprintf("Standard deviation = %g", stddev_y) at 1000, 50 left
+plot mean_y-stddev_y with filledcurves y1=mean_y lt 1 lc rgb "#bbbbdd", \
+mean_y+stddev_y with filledcurves y1=mean_y lt 1 lc rgb "#bbbbdd", \
+mean_y w l lt 3, \
+"timeOut.out" using 1:2 with p pt 7 lt 1 ps 1
