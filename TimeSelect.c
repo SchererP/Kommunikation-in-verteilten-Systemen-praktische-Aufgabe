@@ -7,8 +7,8 @@ int main(int argc, char** argv) {
     char buffer[255];
     int ping_nr = 0, ping_pre, ping_post;
 
-    if (argc != 5) { //Kontrolle, ob Kommandozeilenargumente korrekt übergeben wurden
-        fprintf(stderr, "Usage: %s inputfile outputfile time_begin time_end\n",argv[0]);
+    if (argc != 3) { //Kontrolle, ob Kommandozeilenargumente korrekt übergeben wurden
+        fprintf(stderr, "Usage: %s inputfile outputfile\n",argv[0]);
         return EXIT_FAILURE;
     }
 
@@ -18,7 +18,8 @@ int main(int argc, char** argv) {
 
     /*Einlesen der Zeitangaben*/
 
-    sscanf(argv[3], "%i:%i:%i_%i/%i/%i", &(rohdaten.tm_hour), &(rohdaten.tm_min), &(rohdaten.tm_sec), &(rohdaten.tm_mday), &(rohdaten.tm_mon), &(rohdaten.tm_year));
+    printf("Input the time in the following format: h:m:s_dd/mm/yyyy\nPlease type in the start time: ");
+    scanf("%d:%d:%d_%d/%d/%d", &(rohdaten.tm_hour), &(rohdaten.tm_min), &(rohdaten.tm_sec), &(rohdaten.tm_mday), &(rohdaten.tm_mon), &(rohdaten.tm_year));
 
     rohdaten.tm_mon--; //Dekrementiere, um das Format zu erfüllen
     rohdaten.tm_year -= 1900;
@@ -28,8 +29,9 @@ int main(int argc, char** argv) {
     rohdaten.tm_isdst = 0;
 
     begin = mktime(&rohdaten);
-
-    sscanf(argv[4], "%i:%i:%i_%i/%i/%i", &(rohdaten.tm_hour), &(rohdaten.tm_min), &(rohdaten.tm_sec), &(rohdaten.tm_mday), &(rohdaten.tm_mon), &(rohdaten.tm_year));
+    
+    printf("Please type in the end time: ");
+    scanf("%d:%d:%d_%d/%d/%d", &(rohdaten.tm_hour), &(rohdaten.tm_min), &(rohdaten.tm_sec), &(rohdaten.tm_mday), &(rohdaten.tm_mon), &(rohdaten.tm_year));
 
     rohdaten.tm_mon--; //Dekrementiere, um das Format zu erfüllen
     rohdaten.tm_year -= 1900;
