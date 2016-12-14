@@ -10,4 +10,4 @@ J= words(dateien)
 
 set title "RTT-Verteilung"
 set ylabel "RTT in ms"
-plot for [i=0:95]'Boxplot'.i using (i):1 notitle
+plot for [i=0:120]'Boxplot'.i using (i):1 notitle

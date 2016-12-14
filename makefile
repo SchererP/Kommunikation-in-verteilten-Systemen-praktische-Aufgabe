@@ -36,6 +36,9 @@ TimeSelect: TimeSelect.o
 $(TIMED): TimeSelect $(OUT)
 	./TimeSelect $(OUT) $(TIMED)
 
+PlotSelect: $(TIMED) PlotOptSelect
+	gnuplot PlotOptSelect
+
 Splitter: Splitter.o
 	gcc $(CPPFLAGS) -o Splitter Splitter.o
 

@@ -7,7 +7,7 @@ set xdata time
 set ylabel "RTT in ms"
 unset key
 set terminal unknown;
-plot "parsed.out" using 3:2 with points title 'Plot über Unixzeit'
+plot "Parsed.out" using 3:2 with points title 'Plot über Unixzeit'
 set terminal jpeg enhanced size 20000 20
 set output "parsedTime.jpg"
 
@@ -17,7 +17,7 @@ max_y = GPVAL_DATA_Y_MAX
 min_x = GPVAL_DATA_X_MIN
 
 f(x) = mean_y
-fit f(x) "parsed.out" u 3:2 via mean_y
+fit f(x) "Parsed.out" u 3:2 via mean_y
 
 stddev_y = sqrt(FIT_WSSR / (FIT_NDF + 1 ))
 
@@ -29,4 +29,4 @@ set label 4 gprintf("Standard deviation = %g", stddev_y) at min_x, 50 left
 plot mean_y-stddev_y with filledcurves y1=mean_y lt 1 lc rgb "#bbbbdd", \
 mean_y+stddev_y with filledcurves y1=mean_y lt 1 lc rgb "#bbbbdd", \
 mean_y w l lt 3, \
-"parsed.out" using 3:2 with p pt 7 lt 1 ps 1
+"Parsed.out" using 3:2 with p pt 7 lt 1 ps 1
