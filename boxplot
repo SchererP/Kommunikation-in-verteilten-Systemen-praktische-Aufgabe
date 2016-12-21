@@ -1,13 +1,14 @@
 set terminal jpeg enhanced size 5000 12
-set output "Boxplot.jpg"
+set output "boxplot.jpg"
 set style fill solid 0.25 border -1
 set style boxplot outliers pointtype 7
 set style data boxplot
 unset key
+Max= real(system("ls | grep \"Boxplot\" | wc -l"))
+set xrange [-1:Max]
+Max=Max-1
 
-dateien = "'ls|grep -E 'Boxplot''"
-J= words(dateien)
 
 set title "RTT-Verteilung"
 set ylabel "RTT in ms"
-plot for [i=0:120]'Boxplot'.i using (i):1 notitle
+plot for [i=0:Max]'Boxplot'.i using (i):1 notitle

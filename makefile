@@ -54,3 +54,4 @@ $(BOXPLOT): Splitter $(OUT)
 
 PlotBox: $(BOXPLOT) boxplot
 	gnuplot boxplot
+	rm -f Boxplot*
