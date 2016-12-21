@@ -21,14 +21,22 @@
 \section{Installation}
 	\subsection{Systemvoraussetzungen}
 		Unsere Skriptsammlung basiert auf einem Linux Betriebssystem. Die Entwicklung erfolgt auf einem 64-bit Ubuntu System mit 8 GB RAM und die Kompatibilität wird nur für diese Plattform garantiert. Wenn die Anwendung auf anderen Distributionen verwendet werden soll, ist die Lauffähigkeit vom Nutzer selber zu überprüfen, wobei kein Anspruch auf Portabilität gegeben ist.\\
-		Um die verschiedenen Skripte nutzen zu können, werden einige Programme vorausgesetzt.\\Zunächst wird die GNU Compiler Collection (gcc) benötigt, um den vorliegenden Quellcode zu ausführbaren Dateien zu kompilieren. Daneben wird curl zum Herunterladen der log-Datei gebraucht. Sollte statt curl nur wget verfügbar sein, so kann der entsprechende Befehl im makefile ersetzt werden.\\Für die vereinfachte Anwendung kommt \verb|make| zum Einsatz, das daher zwingend notwendig ist.\\
+		Um die verschiedenen Skripte nutzen zu können, werden einige Programme vorausgesetzt.\\Zunächst wird die GNU Compiler Collection (gcc) benötigt, um den vorliegenden Quellcode zu ausführbaren Dateien zu kompilieren. Daneben wird wget zum Herunterladen der log-Datei gebraucht. Sollte statt wget nur curl verfügbar sein, so kann der entsprechende Befehl im makefile ersetzt werden, indem die Ausgabe von curl in eine Datei namens PA.log mit '$>$' umgeleitet wird.\\Für die vereinfachte Anwendung kommt \verb|make| zum Einsatz, das daher zwingend notwendig ist.\\
 		Zur Generierung der Grafiken wird gnuplot verwendet.\\Die Programme sind in den meisten Linux-Distributionen bereits enthalten, die Installationsanleitungen sind ggf. den Projektseiten zu entnehmen.
 	\subsection{Anleitung}
 		Nach der erfolgreichen Installation der oben aufgelisteten Programme müssen alle Dateien der Skriptsammlung in ein Verzeichnis kopiert werden, in dem alle weiteren Schritte und die Ausgabe der Grafiken erfolgen.
 \section{Anwendung}
-		Die vorgefertigten Programme werden alle über den make [Regel] aufgerufen und das reibungslose Zusammenspiel ist nur gewährleistet, wenn ausschließlich unser makefile verwendet wird. Im Folgenden werden die definierten Regeln erklärt:
+		Die vorgefertigten Programme werden alle über den \verb|make [Regel]| Befehl aufgerufen und das reibungslose Zusammenspiel ist nur gewährleistet, wenn ausschließlich unser makefile verwendet wird. Im Folgenden werden die definierten Regeln erklärt:
 	\paragraph{make Plot}
+		Mit diesem Befehl werden alle Messwerte sowohl über ihre Pingnummer als auch über ihre Zeit geplottet.
 	\paragraph{make PlotSelect}
+		Für einen zeitlichen Ausschnitt wird \verb|make PlotSelect| verwendet. Nach eventuellen Vorbereitungen wird der Zeitraum im Format von HH:MM:SS\_TT/MM/JJJJ abgefragt. Zunächst wird der Start und dann der Endzeitpunkt eingegeben.
 	\paragraph{make PlotBox}
+		Hierdurch werden die Daten nach ihrem zeitlichen Abstand getrennt und auf Basis der Unterteilungen die einzelnen Boxplots gezeichnet. Der Standardwert des Abstands beträgt 3600 s (1 Stunde) und kann im makefile geändert werden.
 	\paragraph{make clean}
+		Um alle Rohdaten, die für den aktuellen Durchlauf gebraucht wurden, zu löschen, wird der Befehl \verb|make clean| ausgeführt. Die Graphen des letzten Durchlaufs bleiben dabei erhalten.
+	\paragraph{make cleanAll}
+		\verb|cleanAll| löscht mindestens alle zur Laufzeit erstellten Dateien und bringt die Skriptsammlung so in einen konsistenten Ausgangszustand.\\
+	
+	Die übrigen Regeln dienen der internen Verwaltung und Vorbereitung. Daher ist ein externer Aufruf nicht vorgesehen und somit nicht dokumentiert.
 \end{document}
