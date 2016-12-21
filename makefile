@@ -11,13 +11,20 @@ Parser: Parser.o
 %.o: %.c %.h
 	gcc $(CPPFLAGS) -c -o $*.o $*.c
 
-.PHONY: clean
-clean:
+.PHONY: cleanAll
+cleanAll:
 	rm -f *.o
 	rm -f *.out
 	rm -f $$(find . -maxdepth 1 -type f -executable)
 	rm -f *.log
 	rm -f *.jpg
+	rm -f Boxplot*
+
+.PHONY: clean
+clean:
+	rm -f *.o
+	rm -f *.out
+	rm -f *.log
 	rm -f Boxplot*
 
 $(OUT): Parser $(IN)
