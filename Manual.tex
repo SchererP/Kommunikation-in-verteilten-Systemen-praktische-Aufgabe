@@ -20,6 +20,15 @@
 \setcounter{page}{1}
 \section{Installation}
 	\subsection{Systemvoraussetzungen}
+		Unsere Skriptsammlung basiert auf einem Linux Betriebssystem. Die Entwicklung erfolgt auf einem 64-bit Ubuntu System mit 8 GB RAM und die Kompatibilität wird nur für diese Plattform garantiert. Wenn die Anwendung auf anderen Distributionen verwendet werden soll, ist die Lauffähigkeit vom Nutzer selber zu überprüfen, wobei kein Anspruch auf Portabilität gegeben ist.\\
+		Um die verschiedenen Skripte nutzen zu können, werden einige Programme vorausgesetzt.\\Zunächst wird die GNU Compiler Collection (gcc) benötigt, um den vorliegenden Quellcode zu ausführbaren Dateien zu kompilieren. Daneben wird curl zum Herunterladen der log-Datei gebraucht. Sollte statt curl nur wget verfügbar sein, so kann der entsprechende Befehl im makefile ersetzt werden.\\Für die vereinfachte Anwendung kommt \verb|make| zum Einsatz, das daher zwingend notwendig ist.\\
+		Zur Generierung der Grafiken wird gnuplot verwendet.\\Die Programme sind in den meisten Linux-Distributionen bereits enthalten, die Installationsanleitungen sind ggf. den Projektseiten zu entnehmen.
 	\subsection{Anleitung}
+		Nach der erfolgreichen Installation der oben aufgelisteten Programme müssen alle Dateien der Skriptsammlung in ein Verzeichnis kopiert werden, in dem alle weiteren Schritte und die Ausgabe der Grafiken erfolgen.
 \section{Anwendung}
+		Die vorgefertigten Programme werden alle über den make [Regel] aufgerufen und das reibungslose Zusammenspiel ist nur gewährleistet, wenn ausschließlich unser makefile verwendet wird. Im Folgenden werden die definierten Regeln erklärt:
+	\paragraph{make Plot}
+	\paragraph{make PlotSelect}
+	\paragraph{make PlotBox}
+	\paragraph{make clean}
 \end{document}
