@@ -2,7 +2,7 @@
 
 \usepackage{ngerman}
 \usepackage[utf8]{inputenc}
-\usepackage{graphics}
+\usepackage{graphicx}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -27,53 +27,86 @@
 	\frame{
 		\frametitle{Auffälligkeiten}
 		\begin{itemize}
-			\item 
+			\item Aufteilung in diskrete Stufen
+			  \begin{itemize}
+			   \item ausreichende Bandbreite
+			   \item Route gleichbleibend
+			  \end{itemize}
+			\item neuere Messungen unregelmäßig
+			  \begin{itemize}
+			   \item erhöhte Last
+			   \item dynamischere Route
+			  \end{itemize}
+			\item doppelstufige Pings Ende 2015
+			   \begin{itemize}
+			   \item Paket auf zwei potentiellen Routen
+			  \end{itemize}
 		\end{itemize}
 	}
 \section{Bandbreitenmessung}
 	\subsection{Messaufbau}
 		\frame{
 			\frametitle{Verfahren}
-			\begin{itemize}
-				\item Test
-			\end{itemize}
+			\begin{enumerate}
+			  \item Verbindung zum Informatiknetz per VPN
+			  \item Herunterladen der Testdatei via Webbrowser
+			    %\subitem linux-3.9.2.tar.xz, 68,7 MB
+			  \item Paketaufzeichnung mittels Wireshark
+			  \item Auswertung mit Wireshark
+			    %\subitem Statistics $\rightarrow$ IOGraph
+			\end{enumerate}
 		}
 
 	\subsection{HTTP}
 		\frame{
-			\frametitle{graphische Auswertung}
+			\frametitle{graphische Auswertung: Stufen}
+			%\includegraphics[scale = 0.5]{BandbreiteHTTPEDU}
+		}
+		
+		\frame{
+			\frametitle{graphische Auswertung: Bandbreitenausreißer}
+			%\includegraphics[scale = 0.5]{BandbreiteHTTPLAN}
+		}
+		
+		\frame{
+			\frametitle{graphische Auswertung: zeitliche Begrenzung}
+			%\includegraphics[scale = 0.5]{BandbreiteHTTPLAN2VPN}
 		}
 		
 		\frame{
 			\frametitle{Extrahierte Werte}
 			\begin{itemize}
-				\item Bandbreitenbegrenzung: 
-				\item Wechselfrequenz: 
+				\item Bandbreitenbegrenzung: 33333 $\frac{byte}{s}$, 66666 $\frac{byte}{s}$, 200000 $\frac{byte}{s}$
+				\item Wechselfrequenz: 30 s, periodisch
 			\end{itemize}
 		}
 
 	\subsection{FTP}
 		\frame{
 			\frametitle{graphische Auswertung}
+			%\includegraphics[scale = 0.5]{BandbreiteFTPLAN}
 		}
 		
 		\frame{
 			\frametitle{Extrahierte Werte}
 			\begin{itemize}
-				\item Bandbreitenbegrenzung: 
-				\item Wechselfrequenz: 
+				\item Bandbreitenbegrenzung: ca. 200000 $\frac{byte}{s}$
+				\item Wechselfrequenz: nach 35 s, einmalig
 			\end{itemize}
 		}
 \section{Anhang}
 	\frame{
 		\frametitle{Auswertung RTT über Ping-Nr}
+		\includegraphics[scale = 0.5]{parsedNum.jpg}
 	}
 	
 	\frame{
 		\frametitle{Auswertung RTT über Zeit}
+		\includegraphics[scale = 0.5]{parsedTime.jpg}
 	}
 	
 	\frame{
 		\frametitle{Auswertung Boxplots}
+		\includegraphics[scale = 0.5]{boxplot.jpg}
 	}
 \end{document}
