@@ -15,6 +15,8 @@ min_y = GPVAL_DATA_Y_MIN
 max_y = GPVAL_DATA_Y_MAX
 
 min_x = GPVAL_DATA_X_MIN
+max_x = GPVAL_DATA_X_MAX
+set xrange [min_x:max_x]
 
 f(x) = mean_y
 fit f(x) "Parsed.out" u 3:2 via mean_y
@@ -22,10 +24,10 @@ fit f(x) "Parsed.out" u 3:2 via mean_y
 stddev_y = sqrt(FIT_WSSR / (FIT_NDF + 1 ))
 
 # Plotting the minimum and maximum ranges with a shaded background
-set label 1 gprintf("Minimum = %g", min_y) at min_x, 80 left
-set label 2 gprintf("Maximum = %g", max_y) at min_x, 70 left
-set label 3 gprintf("Mean = %g", mean_y) at min_x, 60 left
-set label 4 gprintf("Standard deviation = %g", stddev_y) at min_x, 50 left
+set label 1 gprintf("Minimum = %g", min_y) at min_x + 86400, 80 left
+set label 2 gprintf("Maximum = %g", max_y) at min_x + 86400, 70 left
+set label 3 gprintf("Mean = %g", mean_y) at min_x + 86400, 60 left
+set label 4 gprintf("Standard deviation = %g", stddev_y) at min_x + 86400, 50 left
 plot mean_y-stddev_y with filledcurves y1=mean_y lt 1 lc rgb "#bbbbdd", \
 mean_y+stddev_y with filledcurves y1=mean_y lt 1 lc rgb "#bbbbdd", \
 mean_y w l lt 3, \
