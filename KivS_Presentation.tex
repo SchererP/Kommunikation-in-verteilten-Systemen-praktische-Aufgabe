@@ -11,6 +11,7 @@
 
 \title[KivS Abschlusspräsentation]{Kommunikation in verteilten Systemen\\Abschlusspräsentation der praktischen Übung}
 \author{Paul Scherer, Jonas Barteldrees}
+\date{11. Januar 2017}
 \institute[Institut für Informatik]{Universität Bonn, Institut für Informatik}
 \usetheme{Berlin}
 
@@ -23,26 +24,7 @@
 	\frametitle{Übersicht}
 	\tableofcontents
 }
-\section{Datenanalyse}
-	\frame{
-		\frametitle{Auffälligkeiten}
-		\begin{itemize}
-			\item Aufteilung in diskrete Stufen
-			  \begin{itemize}
-			   \item ausreichende Bandbreite
-			   \item Route gleichbleibend
-			  \end{itemize}
-			\item neuere Messungen unregelmäßig
-			  \begin{itemize}
-			   \item erhöhte Last
-			   \item dynamischere Route
-			  \end{itemize}
-			\item doppelstufige Pings Ende 2015
-			   \begin{itemize}
-			   \item Paket auf zwei potentiellen Routen
-			  \end{itemize}
-		\end{itemize}
-	}
+
 \section{Bandbreitenmessung}
 	\subsection{Messaufbau}
 		\frame{
@@ -80,7 +62,7 @@
 		\frame{
 			\frametitle{Extrahierte Werte}
 			\begin{itemize}
-				\item Bandbreitenbegrenzung: 33333 $\frac{byte}{s}$, 66666 $\frac{byte}{s}$, 200000 $\frac{byte}{s}$
+				\item Bandbreitenbegrenzung in $\frac{byte}{s}$: \url{~}33333, \url{~}66666, \url{~}200000
 				\item Wechselfrequenz: 30 s, periodisch
 			\end{itemize}
 		}
@@ -94,10 +76,32 @@
 		\frame{
 			\frametitle{Extrahierte Werte}
 			\begin{itemize}
-				\item Bandbreitenbegrenzung: ca. 200000 $\frac{byte}{s}$
+				\item Bandbreitenbegrenzung in $\frac{byte}{s}$: \url{~}200000
 				\item Wechselfrequenz: nach 35 s, einmalig
 			\end{itemize}
 		}
+
+\section{Datenanalyse}
+	\frame{
+		\frametitle{Auffälligkeiten}
+		\begin{itemize}
+			\item Aufteilung in diskrete Stufen
+			  \begin{itemize}
+			   \item ausreichende Bandbreite
+			   \item Route gleichbleibend
+			  \end{itemize}
+			\item neuere Messungen unregelmäßig
+			  \begin{itemize}
+			   \item erhöhte Last
+			   \item dynamischere Route
+			  \end{itemize}
+			\item doppelstufige Pings Ende 2015
+			   \begin{itemize}
+			   \item Paket auf zwei potentiellen Routen
+			  \end{itemize}
+		\end{itemize}
+	}
+		
 \section{Anhang}
 	\frame{
 		\frametitle{Auswertung RTT über Ping-Nr}
